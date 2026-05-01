@@ -1,7 +1,7 @@
-Source: dde-session-shell
+Source: velora-session-shell
 Section: devel
 Priority: optional
-Maintainer: Deepin Sysdev <sysdev@deepin.com>
+Maintainer: Lingmo OS Team <team@lingmo.org>
 Build-Depends: debhelper-compat (=12), pkg-config,
  cmake,
  qt6-base-dev,
@@ -22,13 +22,13 @@ Build-Depends: debhelper-compat (=12), pkg-config,
  libgtest-dev,
  libx11-xcb-dev,
  libssl-dev,
-Standards-Version: 3.9.4
-Homepage: https://github.com/linuxdeepin/dde-session-shell-snipe
+Standards-Version: 4.5.0
+Homepage: https://github.com/LingmoOS/velora-session-shell
 
 Package: dde-session-shell
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${dist:Depends},
- deepin-desktop-schemas (>=5.9.14),
+ velora-desktop-schemas (>=5.9.14),
  dde-daemon (>=6.1.26),
  x11-xserver-utils,
  deepin-authenticate(>=1.2.27),
