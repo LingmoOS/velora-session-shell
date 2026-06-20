@@ -62,7 +62,7 @@ TEST_F(UT_LockContent, ModeTest)
     m_content->tryGrabKeyboard();
     m_model->setVisible(false);
     m_content->currentWorkspaceChanged();
-    m_content->updateWallpaper("/usr/share/wallpapers/deepin");
+    m_content->updateWallpaper("/usr/share/wallpapers/lingmo");
     QTest::mouseRelease(m_content, Qt::LeftButton, Qt::KeyboardModifier::NoModifier, QPoint(0, 0));
     QTest::keyPress(m_content, Qt::Key_0, Qt::KeyboardModifier::NoModifier);
     m_content->show();
