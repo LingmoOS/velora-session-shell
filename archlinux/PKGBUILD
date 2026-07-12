@@ -2,12 +2,12 @@
 pkgname=deepin-session-shell-git
 pkgver=5.5.9.r123.gd52f772
 pkgrel=1
-sourcename=dde-session-shell
+sourcename=lingmo-session-shell
 sourcetar="$sourcename"_"$pkgver".tar.xz
 sourcedir="$sourcename"
 pkgdesc='Deepin desktop-environment - session-shell module'
 arch=('x86_64' 'aarch64')
-url="https://github.com/linuxdeepin/dde-session-shell"
+url="https://github.com/linuxdeepin/lingmo-session-shell"
 license=('GPL3')
 depends=('deepin-daemon-git' 'deepin-wallpapers-git' 'gsettings-qt' 'liblightdm-qt5' 'startdde-git' 'kwayland5' 'qt5-wayland' 'dtkcore-git' 'dtkwidget-git' 'deepin-pw-check-git')
 makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'gtest' 'gmock' 'dtkcommon-git')

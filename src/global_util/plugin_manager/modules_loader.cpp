@@ -155,9 +155,9 @@ void ModulesLoader::findModule(const QString& path)
  * "pluginEnabled": {
  *       "lock": {
  *            "dbusProperty": {
- *                "service": "com.deepin.daemon.Accounts",
+ *                "service": "com.lingmo.daemon.Accounts",
  *                "path": "/com/deepin/daemon/Accounts/User%{uid}",
- *                "interface": "com.deepin.daemon.Accounts.User",
+ *                "interface": "com.lingmo.daemon.Accounts.User",
  *                "dbusConnection": "systembus",
  *                "property": "WeChatAuthEnabled"
  *            }

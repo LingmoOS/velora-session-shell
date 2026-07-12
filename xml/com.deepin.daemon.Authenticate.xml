@@ -1,4 +1,4 @@
-<interface name="com.deepin.daemon.Authenticate">
+<interface name="com.lingmo.daemon.Authenticate">
     <property name="SupportedFlags" type="i" access="read"/>
     <property name="FailureCount" type="s" access="read"/>
     <signal name="Status">

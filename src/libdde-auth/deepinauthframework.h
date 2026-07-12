@@ -13,14 +13,14 @@
 #include <com_deepin_daemon_authenticate.h>
 #include <com_deepin_daemon_authenticate_session2.h>
 
-using AuthInter = com::deepin::daemon::Authenticate;
-using AuthControllerInter = com::deepin::daemon::authenticate::Session;
+using AuthInter = com::lingmo::daemon::Authenticate;
+using AuthControllerInter = com::lingmo::daemon::authenticate::Session;
 #else
 #include "authenticate1interface.h"
 #include "session2interface.h"
 
-using AuthInter = org::deepin::dde::Authenticate1;
-using AuthControllerInter = org::deepin::dde::authenticate1::Session;
+using AuthInter = org::lingmo::Authenticate1;
+using AuthControllerInter = org::lingmo::authenticate1::Session;
 #endif
 
 class DeepinAuthFramework : public QObject
@@ -44,13 +44,13 @@ public:
     // 是否正在使用pam认证
     bool IsUsingPamAuth();
 
-    /* com.deepin.daemon.Authenticate */
+    /* com.lingmo.daemon.Authenticate */
     int GetFrameworkState() const;
     AuthCommon::AuthFlags GetSupportedMixAuthFlags() const;
     QString GetPreOneKeyLogin(const int flag) const;
     QString GetLimitedInfo(const QString &account) const;
     QString GetSupportedEncrypts() const;
-    /* com.deepin.daemon.Authenticate.Session */
+    /* com.lingmo.daemon.Authenticate.Session */
     int GetFuzzyMFA(const QString &account) const;
     int GetMFAFlag(const QString &account) const;
     int GetPINLen(const QString &account) const;
@@ -68,12 +68,12 @@ public:
 
 signals:
     void startupCompleted();
-    /* com.deepin.daemon.Authenticate */
+    /* com.lingmo.daemon.Authenticate */
     void LimitsInfoChanged(const QString &);
     void SupportedMixAuthFlagsChanged(const int);
     void FramworkStateChanged(const int);
     void SupportedEncryptsChanged(const QString &);
-    /* com.deepin.daemon.Authenticate.Session */
+    /* com.lingmo.daemon.Authenticate.Session */
     void MFAFlagChanged(const bool);
     void FuzzyMFAChanged(const bool);
     void PromptChanged(const QString &);

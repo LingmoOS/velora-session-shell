@@ -55,7 +55,7 @@ AuthPassword::AuthPassword(QWidget *parent)
     , m_resetDialogShow(false)
     , m_isPasswdAuthWidgetReplaced(false)
     , m_assistLoginWidget(nullptr)
-    , m_authenticationDconfig(DConfig::create("org.deepin.dde.authentication", "org.deepin.dde.authentication.errorecho", QString(), this))
+    , m_authenticationDconfig(DConfig::create("org.lingmo.dde.authentication", "org.lingmo.dde.authentication.errorecho", QString(), this))
     , m_canShowPasswordErrorTips(false)
 {
     qRegisterMetaType<LoginPlugin::PluginConfig>("LoginPlugin::PluginConfig");
@@ -738,9 +738,9 @@ void AuthPassword::showResetPasswordMessage()
     m_resetPasswordFloatingMessage->setMessage(tr("Forgot password?"));
     connect(suggestButton, &QPushButton::clicked, this, [this] {
 #ifndef ENABLE_DSS_SNIPE
-    com::deepin::daemon::accounts::User
+    com::lingmo::daemon::accounts::User
 #else
-    org::deepin::dde::accounts1::User
+    org::lingmo::accounts1::User
 #endif
         user(DSS_DBUS::accountsService, QString(DSS_DBUS::accountsUserPath).arg(m_currentUid), QDBusConnection::systemBus());
         auto reply = user.SetPassword("");
@@ -781,9 +781,9 @@ void AuthPassword::closeResetPasswordMessage()
  */
 bool AuthPassword::isUserAccountBinded()
 {
-    QDBusInterface syncHelperInter("com.deepin.sync.Helper",
-                                   "/com/deepin/sync/Helper",
-                                   "com.deepin.sync.Helper",
+    QDBusInterface syncHelperInter("com.lingmo.sync.Helper",
+                                   "/com/lingmo/sync/Helper",
+                                   "com.lingmo.sync.Helper",
                                    QDBusConnection::systemBus());
     QDBusReply<QString> retUOSID = syncHelperInter.call("UOSID");
     if (!syncHelperInter.isValid()) {

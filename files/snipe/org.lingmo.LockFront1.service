@@ -1,4 +1,4 @@
 [D-BUS Service]
-Name=org.deepin.dde.LockFront1
+Name=org.lingmo.LockFront1
 SystemdService=dde-lock.service
 Exec=/usr/bin/dde-lock

@@ -18,15 +18,15 @@ class QVariant;
 QT_END_NAMESPACE
 
 /*
- * Proxy class for interface com.deepin.dde.shutdownFront
+ * Proxy class for interface com.lingmo.shutdownFront
  */
 
 class DBusShutdownFrontService : public QDBusAbstractAdaptor {
     Q_OBJECT
 #ifndef ENABLE_DSS_SNIPE
-    Q_CLASSINFO("D-Bus Interface", "com.deepin.dde.shutdownFront")
+    Q_CLASSINFO("D-Bus Interface", "com.lingmo.shutdownFront")
 #else
-    Q_CLASSINFO("D-Bus Interface", "org.deepin.dde.ShutdownFront1")
+    Q_CLASSINFO("D-Bus Interface", "org.lingmo.ShutdownFront1")
 #endif
 
 public:

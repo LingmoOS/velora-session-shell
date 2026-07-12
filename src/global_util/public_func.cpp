@@ -339,8 +339,8 @@ void configWebEngine()
 #ifdef ENABLE_DSS_SNIPE
 bool isSleepLock()
 {
-    QDBusInterface powerInterface("org.deepin.dde.Power1",
-        "/org/deepin/dde/Power1", "org.deepin.dde.Power1", QDBusConnection::sessionBus());
+    QDBusInterface powerInterface("org.lingmo.Power1",
+        "/org/lingmo/Power1", "org.lingmo.Power1", QDBusConnection::sessionBus());
 
     if (!powerInterface.isValid()) {
         qCritical() << powerInterface.lastError().message();

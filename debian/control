@@ -1,4 +1,4 @@
-Source: velora-session-shell
+Source: lingmo-session-shell
 Section: devel
 Priority: optional
 Maintainer: Lingmo OS Team <team@lingmo.org>
@@ -15,7 +15,7 @@ Build-Depends: debhelper-compat (=12), pkg-config,
  libdtk6core-dev,
  libpam0g-dev,
  libsystemd-dev,
- deepin-gettext-tools,
+ lingmo-gettext-tools,
  libxtst-dev,
  libxcursor-dev,
  libxrandr-dev,
@@ -24,15 +24,15 @@ Build-Depends: debhelper-compat (=12), pkg-config,
  libssl-dev,
  libxkbcommon-dev,
 Standards-Version: 4.5.0
-Homepage: https://github.com/LingmoOS/velora-session-shell
+Homepage: https://github.com/LingmoOS/lingmo-session-shell
 
-Package: dde-session-shell
+Package: lingmo-session-shell
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${dist:Depends},
- velora-desktop-schemas (>=5.9.14),
- dde-daemon (>=6.1.26),
+ lingmo-desktop-schemas (>=5.9.14),
+ lingmo-daemon (>=6.1.26),
  x11-xserver-utils,
- deepin-authenticate(>=1.2.27),
+ lingmo-authenticate(>=1.2.27),
  libssl3,
  libxcb-util0|libxcb-util1,
  xsettingsd,
@@ -42,18 +42,18 @@ Recommends: dss-network-plugin,
  dde-network-dialog
 Conflicts: dde-workspace,
  deepin-notifications,
- dde-session-ui (<< 5.0.0),
+ lingmo-session-ui (<< 5.0.0),
  dde-preload
 Replaces: deepin-notifications
 Breaks: dde-workspace
-Description: deepin desktop-environment - dde-session-shell module
- Deepin desktop environment 2015 - dde-session-shell module.
+Description: deepin desktop-environment - lingmo-session-shell module
+ Deepin desktop environment 2015 - lingmo-session-shell module.
  lightdm-deepin-greeter - login，the entry to the desktop
  dde-lock - lock screen, to protect privacy
  deepin-greeter - actual call the lightdm-deepin-greeter
 
-Package: dde-session-shell-dev
+Package: lingmo-session-shell-dev
 Architecture: any
-Depends: dde-session-shell (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
-Description: deepin desktop-environment - dde-session-shell module development files
+Depends: lingmo-session-shell (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: deepin desktop-environment - lingmo-session-shell module development files
  DDE Session Shell module development files of deepin desktop-environment

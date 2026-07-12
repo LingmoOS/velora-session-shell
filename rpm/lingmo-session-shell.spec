@@ -1,9 +1,9 @@
-Name:           dde-session-shell
+Name:           lingmo-session-shell
 Version:        1.0.0
 Release:        1%{?dist}
 Summary:        DDE Session Shell for Lingmo OS
 License:        GPL-3.0-or-later
-URL:            https://github.com/LingmoOS/dde-session-shell
+URL:            https://github.com/LingmoOS/lingmo-session-shell
 Source0:        dde-session-shell-%{version}.tar.gz
 
 BuildRequires:  gcc-c++
@@ -37,10 +37,10 @@ the Lingmo desktop environment, including lock screen and login.
 %files
 %doc README.md
 %license LICENSE*
-%{_bindir}/dde-session-shell
-%{_libexecdir}/dde-session-shell/
-%{_libdir}/dde-session-shell/
-%{_datadir}/dde-session-shell/
+%{_bindir}/lingmo-session-shell
+%{_libexecdir}/lingmo-session-shell/
+%{_libdir}/lingmo-session-shell/
+%{_datadir}/lingmo-session-shell/
 %{_datadir}/dbus-1/services/*.service
 
 %changelog

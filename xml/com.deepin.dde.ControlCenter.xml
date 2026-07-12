@@ -1,4 +1,4 @@
-<interface name="com.deepin.dde.ControlCenter">
+<interface name="com.lingmo.ControlCenter">
   <property name="ShowInRight" type="b" access="read"/>
   <property name="Rect" type="(iiii)" access="read">
     <annotation name="org.qtproject.QtDBus.QtTypeName" value="QRect"/>

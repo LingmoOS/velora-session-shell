@@ -24,7 +24,7 @@ const bool IsWayland = qgetenv("XDG_SESSION_TYPE").contains("wayland");
 double getScaleFormConfig()
 {
     double defaultScaleFactor = 1.0;
-    QDBusInterface configInter("com.deepin.system.Display",
+    QDBusInterface configInter("com.lingmo.system.Display",
                                                      "/com/deepin/system/Display",
                                                      "com.deepin.system.Display",
                                                     QDBusConnection::systemBus());

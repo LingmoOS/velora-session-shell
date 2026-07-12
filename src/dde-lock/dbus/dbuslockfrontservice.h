@@ -17,18 +17,18 @@ class QString;
 class QVariant;
 QT_END_NAMESPACE
 
-const QString lockFrontService = "org.deepin.dde.LockFront1";
+const QString lockFrontService = "org.lingmo.LockFront1";
 
 /*
- * Proxy class for interface com.deepin.dde.lockFront
+ * Proxy class for interface com.lingmo.lockFront
  */
 class DBusLockFrontService: public QDBusAbstractAdaptor
 {
     Q_OBJECT
 #ifndef ENABLE_DSS_SNIPE
-    Q_CLASSINFO("D-Bus Interface", "com.deepin.dde.lockFront")
+    Q_CLASSINFO("D-Bus Interface", "com.lingmo.lockFront")
 #else
-    Q_CLASSINFO("D-Bus Interface", "org.deepin.dde.LockFront1")
+    Q_CLASSINFO("D-Bus Interface", "org.lingmo.LockFront1")
 #endif
 
 public:

@@ -21,20 +21,20 @@
 #include <com_deepin_daemon_logined.h>
 #include <com_deepin_sessionmanager.h>
 
-using AccountsInter = com::deepin::daemon::Accounts;
-using UserInter = com::deepin::daemon::accounts::User;
-using LoginedInter = com::deepin::daemon::Logined;
-using SessionManagerInter = com::deepin::SessionManager;
+using AccountsInter = com::lingmo::daemon::Accounts;
+using UserInter = com::lingmo::daemon::accounts::User;
+using LoginedInter = com::lingmo::daemon::Logined;
+using SessionManagerInter = com::lingmo::SessionManager;
 #else
 #include "accounts1interface.h"
 #include "loginedinterface.h"
 #include "userinterface.h"
 #include "sessionmanager1interface.h"
 
-using AccountsInter = org::deepin::dde::Accounts1;
-using UserInter = org::deepin::dde::accounts1::User;
-using LoginedInter = org::deepin::dde::Logined;
-using SessionManagerInter = org::deepin::dde::SessionManager1;
+using AccountsInter = org::lingmo::Accounts1;
+using UserInter = org::lingmo::accounts1::User;
+using LoginedInter = org::lingmo::Logined;
+using SessionManagerInter = org::lingmo::SessionManager1;
 #endif
 
 class SessionBaseModel;

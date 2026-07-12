@@ -751,8 +751,8 @@ bool FullScreenBackground::getScaledBlurImage(const QString &originPath, QString
     }
 
     // 壁纸服务dde-wallpaper-cache
-    QDBusInterface wallpaperCacheInterface("org.deepin.dde.WallpaperCache", "/org/deepin/dde/WallpaperCache",
-                                           "org.deepin.dde.WallpaperCache", QDBusConnection::systemBus());
+    QDBusInterface wallpaperCacheInterface("org.lingmo.WallpaperCache", "/org/lingmo/WallpaperCache",
+                                           "org.lingmo.WallpaperCache", QDBusConnection::systemBus());
 
     QFile file(originPath);
     if (!file.open(QIODevice::ReadOnly)) {

@@ -34,7 +34,7 @@ DCORE_USE_NAMESPACE
 
 LockContent::LockContent(QWidget *parent)
     : SessionBaseWindow(parent)
-    , m_wmInter(new com::deepin::wm("com.deepin.wm", "/com/deepin/wm", QDBusConnection::sessionBus(), this))
+    , m_wmInter(new com::lingmo::wm("com.lingmo.wm", "/com/lingmo/wm", QDBusConnection::sessionBus(), this))
     , m_localServer(new QLocalServer(this))
     , m_currentModeStatus(SessionBaseModel::ModeStatus::NoStatus)
     , m_showMediaWidget(DConfigHelper::instance()->getConfig(SHOW_MEDIA_WIDGET, false).toBool())
@@ -199,7 +199,7 @@ void LockContent::initConnections()
             setCenterContent(m_authWidget->getAuthWidget(), 0, Qt::AlignTop, calcTopSpacing(m_authWidget->getTopSpacing()));
     });
 
-    connect(m_wmInter, &com::deepin::wm::WorkspaceSwitched, this, &LockContent::currentWorkspaceChanged);
+    connect(m_wmInter, &com::lingmo::wm::WorkspaceSwitched, this, &LockContent::currentWorkspaceChanged);
     connect(m_localServer, &QLocalServer::newConnection, this, &LockContent::onNewConnection);
     connect(m_controlWidget, &ControlWidget::notifyKeyboardLayoutHidden, this, [this] {
         if (!m_model->isUseWayland() && isVisible() && window()->windowHandle()) {
@@ -486,7 +486,7 @@ void LockContent::onNewConnection()
                                            << "screenshot-delayed"
                                            << "screenshot-ocr"
                                            << "screenshot-scroll"
-                                           << "deepin-screen-recorder",
+                                           << "lingmo-screen-recorder",
                              false, false);
     }
     m_hasResetPasswordDialog = true;
@@ -505,7 +505,7 @@ void LockContent::onDisConnect()
                                        << "screenshot-delayed"
                                        << "screenshot-ocr"
                                        << "screenshot-scroll"
-                                       << "deepin-screen-recorder",
+                                       << "lingmo-screen-recorder",
                          true, false);
 }
 
@@ -874,7 +874,7 @@ void LockContent::currentWorkspaceChanged()
             updateWallpaper(reply.value());
         } else {
             qCWarning(DDE_SHELL) << "Get current workspace background error: " << call.error().message();
-            updateWallpaper("/usr/share/backgrounds/deepin/desktop.jpg");
+            updateWallpaper("/usr/share/backgrounds/lingmo/desktop.jpg");
         }
         watcher->deleteLater();
     });

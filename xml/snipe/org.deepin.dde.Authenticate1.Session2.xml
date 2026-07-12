@@ -1,4 +1,4 @@
-<interface name="org.deepin.dde.Authenticate1.Session">
+<interface name="org.lingmo.Authenticate1.Session">
     <property name="IsFuzzyMFA" type="b" access="read"/>
     <property name="IsMFA" type="b" access="read"/>
     <property name="FactorsInfo" type="a(iiib)" access="read">

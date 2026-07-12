@@ -17,7 +17,7 @@
 #include "dbusconstant.h"
 
 /*
- * Proxy class for interface com.deepin.daemon.Zone
+ * Proxy class for interface com.lingmo.daemon.Zone
  */
 class DBusHotzone: public QDBusAbstractInterface
 {
@@ -45,9 +45,9 @@ class DBusHotzone: public QDBusAbstractInterface
 public:
     static inline const char *staticInterfaceName()
 #ifndef ENABLE_DSS_SNIPE
-    { return "com.deepin.daemon.Zone"; }
+    { return "com.lingmo.daemon.Zone"; }
 #else
-    { return "org.deepin.dde.Zone1"; }
+    { return "org.lingmo.Zone1"; }
 #endif
 
 public:
@@ -119,7 +119,7 @@ Q_SIGNALS: // SIGNALS
 };
 
 namespace com {
-  namespace deepin {
+  namespace lingmo {
     namespace daemon {
       typedef ::DBusHotzone Zone;
     }

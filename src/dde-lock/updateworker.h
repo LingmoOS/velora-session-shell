@@ -8,11 +8,11 @@
 #ifndef ENABLE_DSS_SNIPE
 #include <com_deepin_system_systempower.h>
 
-using PowerInter = com::deepin::system::Power;
+using PowerInter = com::lingmo::system::Power;
 #else
 #include "systempower1interface.h"
 
-using PowerInter = org::deepin::dde::Power1;
+using PowerInter = org::lingmo::Power1;
 #endif
 class UpdateWorker : public QObject
 {

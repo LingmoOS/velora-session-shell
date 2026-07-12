@@ -13,7 +13,7 @@
 #include "dbusconstant.h"
 
 /*
- * Proxy class for interface com.deepin.dde.lockFront
+ * Proxy class for interface com.lingmo.lockFront
  */
 class DBusLockFront: public QDBusAbstractInterface
 {
@@ -41,9 +41,9 @@ class DBusLockFront: public QDBusAbstractInterface
 public:
     static inline const char *staticInterfaceName()
 #ifndef ENABLE_DSS_SNIPE
-    { return "com.deepin.dde.lockFront"; }
+    { return "com.lingmo.lockFront"; }
 #else
-    { return "org.deepin.dde.LockFront1"; }
+    { return "org.lingmo.LockFront1"; }
 #endif
 
 public:
@@ -61,10 +61,8 @@ public Q_SLOTS: // METHODS
 };
 
 namespace com {
-  namespace deepin {
-    namespace dde {
-      typedef ::DBusLockFront LockFront;
-    }
+  namespace lingmo {
+    typedef ::DBusLockFront LockFront;
   }
 }
 #endif // DBUSLOCKFRONT_H

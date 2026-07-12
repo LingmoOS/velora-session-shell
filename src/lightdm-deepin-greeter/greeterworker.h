@@ -18,7 +18,7 @@
 #ifndef ENABLE_DSS_SNIPE
 #include <com_deepin_api_soundthemeplayer.h>
 
-using SoundThemePlayerInter = com::deepin::api::SoundThemePlayer;
+using SoundThemePlayerInter = com::lingmo::api::SoundThemePlayer;
 #endif
 
 class GreeterWorker : public Auth::AuthInterface

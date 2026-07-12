@@ -13,11 +13,11 @@
 #ifdef ENABLE_DSS_SNIPE
 #include "systemdisplay1interface.h"
 
-using SystemDisplayInter = org::deepin::dde::Display1;
+using SystemDisplayInter = org::lingmo::Display1;
 #else
 #include <com_deepin_system_systemdisplay.h>
 
-using SystemDisplayInter = com::deepin::system::Display;
+using SystemDisplayInter = com::lingmo::system::Display;
 #endif
 
 

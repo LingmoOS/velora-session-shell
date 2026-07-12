@@ -113,7 +113,7 @@ protected:
     QList<QMetaObject::Connection> m_currentUserConnects;
     LogoWidget *m_logoWidget = nullptr;
     MediaWidget *m_mediaWidget = nullptr;
-    com::deepin::wm *m_wmInter = nullptr;
+    com::lingmo::wm *m_wmInter = nullptr;
     QWidget *m_loginWidget = nullptr;
 
     SFAWidget *m_sfaWidget = nullptr;

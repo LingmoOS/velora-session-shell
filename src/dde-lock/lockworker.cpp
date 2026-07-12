@@ -333,7 +333,7 @@ void LockWorker::initData()
             m_model->updateCurrentUser(m_lockInter->CurrentUser());
         }
     } else {
-        qCWarning(DDE_SHELL) << "dbus com.deepin.daemon.Accounts userList is empty, use ...";
+        qCWarning(DDE_SHELL) << "dbus com.lingmo.daemon.Accounts userList is empty, use ...";
 
         std::shared_ptr<User> user(new User());
         m_model->addUser(user);

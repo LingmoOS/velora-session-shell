@@ -26,13 +26,13 @@
 #include <pwd.h>
 #include </usr/include/shadow.h>
 
-#define SECURITY_ENHANCE_PATH "/com/deepin/daemon/SecurityEnhance"
-#define SECURITY_ENHANCE_NAME "com.deepin.daemon.SecurityEnhance"
+#define SECURITY_ENHANCE_PATH "/com/lingmo/daemon/SecurityEnhance"
+#define SECURITY_ENHANCE_NAME "com.lingmo.daemon.SecurityEnhance"
 
 #ifndef ENABLE_DSS_SNIPE
-using PowerInter = com::deepin::system::Power;
+using PowerInter = com::lingmo::system::Power;
 #else
-using PowerInter = org::deepin::dde::Power1;
+using PowerInter = org::lingmo::Power1;
 #endif
 using namespace Auth;
 using namespace AuthCommon;
@@ -49,7 +49,7 @@ GreeterWorker::GreeterWorker(SessionBaseModel *const model, QObject *parent)
     , m_lockInter(new DBusLockService(DSS_DBUS::lockService, DSS_DBUS::lockServicePath, QDBusConnection::systemBus(), this))
     , m_systemDaemon(new QDBusInterface(DSS_DBUS::systemDaemonService, DSS_DBUS::systemDaemonPath, DSS_DBUS::systemDaemonService, QDBusConnection::systemBus(), this))
 #ifndef ENABLE_DSS_SNIPE
-    , m_soundPlayerInter(new SoundThemePlayerInter("com.deepin.api.SoundThemePlayer", "/com/deepin/api/SoundThemePlayer", QDBusConnection::systemBus(), this))
+    , m_soundPlayerInter(new SoundThemePlayerInter("com.lingmo.api.SoundThemePlayer", "/com/lingmo/api/SoundThemePlayer", QDBusConnection::systemBus(), this))
 #endif
     , m_resetSessionTimer(new QTimer(this))
     , m_limitsUpdateTimer(new QTimer(this))
@@ -80,7 +80,7 @@ GreeterWorker::GreeterWorker(SessionBaseModel *const model, QObject *parent)
     }
 #else
     if (!m_dConfig) {
-        m_dConfig = DConfig::create("org.deepin.dde.session-shell", "org.deepin.dde.session-shell", QString(), this);
+        m_dConfig = DConfig::create("org.lingmo.dde.session-shell", "org.lingmo.dde.session-shell", QString(), this);
     }
     int resetTime = m_dConfig->value("authResetTime", 15000).toInt();
     if (resetTime > 0) {
@@ -108,7 +108,7 @@ void GreeterWorker::initConnections()
     connect(m_greeter, &QLightDM::Greeter::showPrompt, this, &GreeterWorker::showPrompt);
     connect(m_greeter, &QLightDM::Greeter::showMessage, this, &GreeterWorker::showMessage);
     connect(m_greeter, &QLightDM::Greeter::authenticationComplete, this, &GreeterWorker::authenticationComplete);
-    /* com.deepin.daemon.Accounts */
+    /* com.lingmo.daemon.Accounts */
     connect(m_accountsInter, &AccountsInter::UserAdded, this, [this](const QString &path) {
         // Account接口中的path可能被不同用户复用，导致model中数据未更新
         qCInfo(DDE_SHELL) << "User add, path:" << path;
@@ -150,7 +150,7 @@ void GreeterWorker::initConnections()
         }
     });
     connect(m_loginedInter, &LoginedInter::UserListChanged, m_model, &SessionBaseModel::updateLoginedUserList);
-    /* com.deepin.daemon.Authenticate */
+    /* com.lingmo.daemon.Authenticate */
     connect(m_authFramework, &DeepinAuthFramework::FramworkStateChanged, m_model, &SessionBaseModel::updateFrameworkState);
     connect(m_authFramework, &DeepinAuthFramework::LimitsInfoChanged, this, [this](const QString &account) {
         qDebug() << "GreeterWorker::initConnections LimitsInfoChanged:" << account;
@@ -169,7 +169,7 @@ void GreeterWorker::initConnections()
     });
     connect(m_authFramework, &DeepinAuthFramework::SupportedEncryptsChanged, m_model, &SessionBaseModel::updateSupportedEncryptionType);
     connect(m_authFramework, &DeepinAuthFramework::SupportedMixAuthFlagsChanged, m_model, &SessionBaseModel::updateSupportedMixAuthFlags);
-    /* com.deepin.daemon.Authenticate.Session */
+    /* com.lingmo.daemon.Authenticate.Session */
     connect(m_authFramework, &DeepinAuthFramework::AuthStateChanged, this, &GreeterWorker::onAuthStateChanged);
     connect(m_authFramework, &DeepinAuthFramework::FactorsInfoChanged, m_model, &SessionBaseModel::updateFactorsInfo);
     connect(m_authFramework, &DeepinAuthFramework::FuzzyMFAChanged, m_model, &SessionBaseModel::updateFuzzyMFA);
@@ -245,7 +245,7 @@ void GreeterWorker::initConnections()
         prepareShutdownSound();
 #endif
     });
-    /* com.deepin.dde.LockService */
+    /* com.lingmo.dde.LockService */
     connect(m_lockInter, &DBusLockService::UserChanged, this, [this](const QString &json) {
         qCInfo(DDE_SHELL) << "User changed: " << json;
         // 如果是已登录用户则返回，否则已登录用户和未登录用户来回切换时会造成用户信息错误
@@ -311,7 +311,7 @@ void GreeterWorker::initConnections()
                                          "Receipt", this, SLOT(onReceiptChanged(bool)));
 
     connect(m_authFramework, &DeepinAuthFramework::startupCompleted, this, [this] {
-        /* com.deepin.daemon.Authenticate */
+        /* com.lingmo.daemon.Authenticate */
         m_model->updateFrameworkState(m_authFramework->GetFrameworkState());
         m_model->updateSupportedEncryptionType(m_authFramework->GetSupportedEncrypts());
         m_model->updateSupportedMixAuthFlags(m_authFramework->GetSupportedMixAuthFlags());
@@ -339,12 +339,12 @@ void GreeterWorker::initData()
 
     auto list = m_accountsInter->userList();
     if (!list.isEmpty()) {
-        /* com.deepin.daemon.Accounts */
+        /* com.lingmo.daemon.Accounts */
         m_model->updateUserList(list);
         m_model->updateLoginedUserList(m_loginedInter->userList());
 
         m_model->setUserlistVisible(valueByQSettings<bool>("", "userlist", true));
-        /* com.deepin.udcp.iam */
+        /* com.lingmo.udcp.iam */
         QDBusInterface ifc(DSS_DBUS::udcpIamService, DSS_DBUS::udcpIamPath, DSS_DBUS::udcpIamService, QDBusConnection::systemBus(), this);
         const bool allowShowCustomUser = (!m_model->userlistVisible()) || valueByQSettings<bool>("", "loginPromptInput", false) ||
             ifc.property("Enable").toBool() || checkIsADDomain();
@@ -359,11 +359,11 @@ void GreeterWorker::initData()
             if (DSysInfo::deepinType() == DSysInfo::DeepinServer || valueByQSettings<bool>("", "loginPromptInput", false) || !m_model->userlistVisible()) {
                 m_model->updateCurrentUser(user);
             } else {
-                /* com.deepin.dde.LockService */
+                /* com.lingmo.dde.LockService */
                 m_model->updateCurrentUser(m_lockInter->CurrentUser());
             }
         } else {
-            /* com.deepin.dde.LockService */
+            /* com.lingmo.dde.LockService */
             m_model->updateCurrentUser(m_lockInter->CurrentUser());
         }
 #ifndef ENABLE_DSS_SNIPE
@@ -372,14 +372,14 @@ void GreeterWorker::initData()
     prepareShutdownSound();
 #endif
     } else {
-        qCWarning(DDE_SHELL) << "dbus com.deepin.daemon.Accounts userList is empty, use ...";
+        qCWarning(DDE_SHELL) << "dbus com.lingmo.daemon.Accounts userList is empty, use ...";
         m_model->setAllowShowCustomUser(true);
         std::shared_ptr<User> user(new User());
         m_model->addUser(user);
         m_model->updateCurrentUser(user);
     }
 
-    /* com.deepin.daemon.Authenticate */
+    /* com.lingmo.daemon.Authenticate */
     if (m_authFramework->isDAStartupCompleted() ) {
         m_model->updateFrameworkState(m_authFramework->GetFrameworkState());
         m_model->updateSupportedEncryptionType(m_authFramework->GetSupportedEncrypts());
@@ -404,7 +404,7 @@ void GreeterWorker::initConfiguration()
 
     checkPowerInfo();
 
-    if (QFile::exists("/etc/deepin/no_suspend")) {
+    if (QFile::exists("/etc/lingmo/no_suspend")) {
         m_model->setCanSleep(false);
     }
 
@@ -772,7 +772,7 @@ void GreeterWorker::checkDBusServer(bool isValid)
     } else {
         // FIXME: 我不希望这样做，但是QThread::msleep会导致无限递归
         QTimer::singleShot(300, this, [this] {
-            qCWarning(DDE_SHELL) << "com.deepin.daemon.Accounts is not start, rechecking!";
+            qCWarning(DDE_SHELL) << "com.lingmo.daemon.Accounts is not start, rechecking!";
             checkDBusServer(m_accountsInter->isValid());
         });
     }
@@ -1178,7 +1178,7 @@ void GreeterWorker::terminalLockedChanged(const QDBusMessage &msg)
     }
 
     QString interfaceName = arguments.at(0).toString();
-    if (interfaceName != QString("com.deepin.daemon.Accounts")){
+    if (interfaceName != QString("com.lingmo.daemon.Accounts")){
         return;
     }
 
@@ -1225,8 +1225,8 @@ void GreeterWorker::onNoPasswordLoginChanged(const QString &account, bool noPass
 #ifdef ENABLE_DSS_SNIPE
 void GreeterWorker::prepareShutdownSound()
 {
-    QDBusInterface soundPlayerInter("org.deepin.dde.SoundThemePlayer1", "/org/deepin/dde/SoundThemePlayer1",
-        "org.deepin.dde.SoundThemePlayer1", QDBusConnection::systemBus());
+    QDBusInterface soundPlayerInter("org.lingmo.SoundThemePlayer1", "/org/lingmo/SoundThemePlayer1",
+        "org.lingmo.SoundThemePlayer1", QDBusConnection::systemBus());
     if (!soundPlayerInter.isValid() || !m_model->currentUser()) {
         qCWarning(DDE_SHELL) << "Sound player interface is not valid or current user is null:" << soundPlayerInter.isValid();
         return;

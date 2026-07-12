@@ -29,19 +29,19 @@
 #include <memory>
 
 #ifndef ENABLE_DSS_SNIPE
-using AccountsInter = com::deepin::daemon::Accounts;
-using LoginedInter = com::deepin::daemon::Logined;
+using AccountsInter = com::lingmo::daemon::Accounts;
+using LoginedInter = com::lingmo::daemon::Logined;
 using Login1SessionSelf = org::freedesktop::login1::Session;
 using DBusObjectInter = org::freedesktop::DBus;
 
-using com::deepin::daemon::Authenticate;
+using com::lingmo::daemon::Authenticate;
 #else
-using AccountsInter = org::deepin::dde::Accounts1;
-using LoginedInter = org::deepin::dde::Logined;
+using AccountsInter = org::lingmo::Accounts1;
+using LoginedInter = org::lingmo::Logined;
 using Login1SessionSelf = org::freedesktop::login1::Session;
 using DBusObjectInter = org::freedesktop::DBus;
 
-using Authenticate = org::deepin::dde::Authenticate1;
+using Authenticate = org::lingmo::Authenticate1;
 #endif
 
 class User;
